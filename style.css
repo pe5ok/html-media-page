@@ -1,0 +1,142 @@
+@keyframes fadeIn {
+	from {
+		filter: opacity(0);
+	}
+	to {
+		filter: opacity(1);
+	}
+}
+@keyframes fadeOut {
+	from {
+		filter: opacity(1);
+	}
+	to {
+		filter: opacity(0);
+	}
+}
+body {
+	font-family: Arial, Helvetica, sans-serif;
+	color: #aaa;
+}
+.content {
+	width: 100vw;
+	height: 100vh;
+	object-fit: contain;
+	box-sizing: border-box;
+	padding: 0;
+	margin: 0;
+	filter: opacity(0);
+}
+.viewer {
+	position: absolute;
+	width: 100vw;
+	height: 100vh;
+	margin: 0;
+	padding: 0;
+}
+.footer {
+	filter: opacity(0);
+	box-sizing: border-box;
+	background-color: #222;
+	position: absolute;
+	margin: 0;
+	padding: 0;
+	width: 100vw;
+	height: 40vh;
+	z-index: 1;
+	bottom: 0;
+	transition: filter 1s;
+}
+.footer:hover {
+	filter: opacity(1);
+}
+.section {
+	margin: 0;
+	height: 40vh;
+	padding: 24px;
+}
+.wrapper {
+	padding: 0;
+	margin: 0;
+}
+.section button {
+	background-color: inherit;
+	color: inherit;
+	font-size: inherit;
+	border: 1px solid #aaa;
+	border-radius: 12px;
+	padding: 12px 24px;
+	text-align: center;
+	text-decoration: none;
+	transition: color, background-color, 0.3s;
+}
+.section button:hover {
+	background-color: #aaa;
+	color: #222;
+}
+.heading {
+	font-size: 36px;
+	padding: 0 0 0 0;
+	margin: 0 0 24px 0;
+	text-align: center;
+}
+.input {
+	height: 36px;
+	border-bottom: #aaa 1px solid;
+	display: flex;
+	flex-direction: row;
+	padding: 0;
+}
+.input input {
+	background-color: inherit;
+	box-sizing: border-box;
+	color: inherit;
+	flex: 1;
+	padding: 0;
+	margin: 0;
+	font-family: inherit;
+	font-size: inherit;
+	border: 0px;
+	height: 36px;
+}
+.input input:focus,
+.input input:focus:hover {
+	outline: none;
+	box-shadow: none;
+}
+.input .submit {
+	flex: initial;
+	width: 36px;
+	transition: color, background-color, 0.3s;
+}
+.input .submit:hover {
+	background-color: #aaa;
+	color: #222;
+}
+.list {
+	margin: 0;
+	padding: 0;
+	max-height: calc(40vh - 60px);
+	overflow-y: scroll;
+	overflow-x: hidden;
+}
+@keyframes reddy {
+	from {
+		background-size: 0% 100%
+	}
+	to {
+		background-size: 100% 100%
+	}
+}
+.list>div {
+	list-style-type: none;
+	border-bottom: 1px #aaa solid;
+	margin: 10px 15px 0px 15px;
+	padding: 10px 5px 15px 5px;
+	background-image: linear-gradient(#aaa);
+	background-repeat: no-repeat;
+	background-size: 0% 100%;
+	-webkit-user-select: none;
+	-ms-user-select: none;
+	user-select: none;
+}

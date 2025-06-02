@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<link href="./style.css" rel="stylesheet">
+</head>
+<body style="margin:0;padding: 0;background-color: #000;overflow: hidden;width: 100vw;height: 100vh;">
+	<div id="viewer" class="viewer">
+	</div>
+	<div id="controlPanel" class="footer" style="display: flex;">
+		<div class="section" style="width: 30%;">
+			<div class="heading">~control panel~</div>
+			<div class="wrapper" style="display: inline-block;">
+				<button id="startButton">start</button><button id="clearScreen">clear</button><button
+					id="volumeSwitch">unmute</button><button id="modeSwitch"></button>
+			</div>
+		</div>
+		<div id="userListSection" class="section" style="width: 35%;">
+			<form id="userInput"
+				class="wrapper input"><input type="text"><input class="submit" type="submit" value="+"></form>
+		</div>
+		<div class="section" style="width: 35%;">
+		</div>
+	</div>
+	<script src="script.js"></script>
+</body>
+</html>
