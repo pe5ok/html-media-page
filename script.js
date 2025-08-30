@@ -87,42 +87,43 @@ async function main() {
             fetch(`${template}/sendMessage?chat_id=${message["chat"]["id"]}&text=You aren't allowed to use this bot.`)
             continue
         }
-        let bufFileId, bufType
+        let bufFileId, bufType, bufSize = 0
         for (let contentType in allowedContentType) {
-            if (Object.keys(update['message']).indexOf(contentType) != -1) {
-                let object = update["message"][contentType]
-                if (contentType == 'photo') {
-                    bufFileId = object[object.length - 1]['file_id'];
-                }
-                else {
-                    bufFileId = object['file_id'];
-                }
-                switch (contentType) {
-                    case 'document':
-                        let mimeType = object['mime_type'].split('/')
-                        if (mimeType[1] == 'gif' || mimeType[0] == "image") {
-                            bufType = "img"
-                        } else if (mimeType[0] == "video") {
-                            bufType = "video"
-                        }
-                        break
-                    case 'animation':
-                        bufType = "img"
-                        break
-                    case `sticker`:
-                        if (object["is_video"]) {
-                            bufType = "video"
-                        } else {
-                            bufType = "img"
-                        }
-                        break
-                    default:
-                        bufType = allowedContentType[contentType]
-                }
-                break
+            if (Object.keys(update['message']).indexOf(contentType) == -1)continue
+            let object = update["message"][contentType]
+            if (contentType == 'photo') {
+                bufFileId = object[object.length - 1]['file_id']
+                bufSize = object[object.length - 1]['file_size']
             }
+            else {
+                bufFileId = object['file_id']
+                bufSize = object['file_size']
+            }
+            switch (contentType) {
+                case 'document':
+                    let mimeType = object['mime_type'].split('/')
+                    if (mimeType[1] == 'gif' || mimeType[0] == "image") {
+                        bufType = "img"
+                    } else if (mimeType[0] == "video") {
+                        bufType = "video"
+                    }
+                    break
+                case 'animation':
+                    bufType = "img"
+                    break
+                case 'sticker':
+                    if (object["is_video"]) {
+                        bufType = "video"
+                    } else {
+                        bufType = "img"
+                    }
+                    break
+                default:
+                    bufType = allowedContentType[contentType]   
+            }
+            break
         }
-        if (bufType == undefined) continue
+        if (bufType == undefined || bufSize>=20*1024*1024) continue
         username = message["from"]["username"]
         type = bufType
         fileId = bufFileId
